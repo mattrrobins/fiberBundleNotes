@@ -1,0 +1,49 @@
+This is BibTeX, Version 0.99d (TeX Live 2013)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: /Users/Mattair/Dropbox/Notes/Fiber Bundles/.texpadtmp/Fiber Bundles.aux
+A level-1 auxiliary file: sections/vectorBundles.aux
+A level-1 auxiliary file: sections/examplesVecBund.aux
+A level-1 auxiliary file: sections/fiberBundle.aux
+The style file: plain.bst
+Database file #1: ../../../texInput/Bibliography.bib
+You've used 6 entries,
+            2118 wiz_defined-function locations,
+            538 strings with 4948 characters,
+and the built_in function-call counts, 1465 in all, are:
+= -- 136
+> -- 59
+< -- 1
++ -- 24
+- -- 18
+* -- 79
+:= -- 263
+add.period$ -- 17
+call.type$ -- 6
+change.case$ -- 23
+chr.to.int$ -- 0
+cite$ -- 6
+duplicate$ -- 63
+empty$ -- 129
+format.name$ -- 18
+if$ -- 301
+int.to.chr$ -- 0
+int.to.str$ -- 6
+missing$ -- 7
+newline$ -- 32
+num.names$ -- 12
+pop$ -- 39
+preamble$ -- 1
+purify$ -- 21
+quote$ -- 0
+skip$ -- 41
+stack$ -- 0
+substring$ -- 52
+swap$ -- 7
+text.length$ -- 1
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 18
+warning$ -- 0
+while$ -- 14
+width$ -- 7
+write$ -- 64

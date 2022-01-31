@@ -1,0 +1,172 @@
+
+
+
+
+%%%%%
+\section{Vector Bundles}
+\begin{tcolorbox}
+Introductory definitions follow from \cite{kolar1999natural}, \cite{lee2003smooth}, \cite{ryan2014geometry}.
+
+Check out \cite{borisenko1991riemannian}
+\end{tcolorbox}
+
+
+Let $M$ be a topological space.  A \textit{real vector bundle of rank $k$ over $M$} is a topological space $E$ together with surjective map $\pi:E\to M$ satisfying the following conditions
+\begin{enumerate}[a.]
+	\item For each $p\in M$, the fiber $E_p:=\pi^{-1}(p)$ over $p$ is endowed with the structure of a $k$-dimensional, real vector space.
+	\item For each $p\in M$, there exists a neighborhood $U\subseteq M$ of $p$, and a homeomorphism $\Phi:\pi^{-1}(U)\to U\times\R^k$ (called the \textit{local trivialization of $E$ over $U$}) satisfying the following conditions:
+		\begin{enumerate}[i.]
+			\item $\pi_U\circ\Phi=\pi$ (where $\pi_U:U\times\R^k\to U$ is the projection onto $U$), and
+			\item for each $q\in U$, the restriction of $\Phi$ to $E_q$ is a vector space isomorphism from $E_q$ to $\{q\}\times\R^k\cong\R^k$.
+		\end{enumerate}
+\end{enumerate}
+
+If $M$ and $E$ are smooth manifolds (with or without boundary), $\pi:E\to M$ is smooth, and the local trivialization can be chosen to be diffeomorphisms, then $\pi:E\to M$ is a \textit{smooth vector bundle}.  We also call any local trivialization that is a diffeomorphism onto its image a \textit{smooth local trivialization}.  We write $\mathcal{E}$ or $(E,\pi,M)$ to denote smooth vector bundles.
+
+We say that $E$ is the \textit{total space}, $M$ is the \textit{base space}, and $\pi$ is the \textit{projection}.  If there exists a local trivialization of $E$ over all $M$, then we that $E$ is the \textit{trivial bundle}, and have that $E$ is homeomorphic to $M\times\R^k$.  If $E$ is \textit{smoothly trivial}, then $E$ is diffeomorphic to $M\times\R^k$.  
+
+
+\paragraph{Alternative Definition:}
+Perhaps a better working definition for vector bundles can be described as follows.  First note, that since we're mostly interested in the smooth category, we shall ignore topological vector bundles.
+
+Let $\pi:E\to M$ be a smooth mapping between smooth manifolds.  A \textit{vector bundle chart} on $(E,\pi, M)$ is a pair $(U,\psi)$, where $U\subseteq M$ is an open subset and $\psi$ is a fiber-respecting diffeomorphism so the following diagram commutes
+\begin{center}
+	\begin{tikzpicture}[auto, node distance=3cm]
+		\node(A){$\rest{E}_U:=\pi^{-1}(U)$};
+		\node(B)[right of=A]{};
+		\node(C)[right of=B]{$U\times V$};
+		\node(D)[below of=B]{$U$};
+		\draw[->](A) to node{$\psi$}(C);
+		\draw[->](A) to node[swap]{$\pi$}(D);
+		\draw[->](C) to node{$\pi_U$}(D);
+	\end{tikzpicture}
+\end{center}
+where $V=\pi^{-1}(p)$ is some fixed (real) $k$-dimensional vector space called the \textit{standard fiber} and $\pi_U:U\times V\to U$ is the projection onto the first factor.
+
+Given two vector bundle charts $(U_\alpha,\psi_\alpha)$ and $(U_\beta,\psi_\beta)$, we say they are \textit{compatible} if $\psi_\alpha\circ\psi_\beta^{-1}$ is fiber-wise linear isomorphism, i.e.,
+$$\psi_\alpha\circ\psi_\beta^{-1}(p,v)=(p,\psi_{\alpha\beta}(p)v),$$
+for some mapping
+$$\psi_{\alpha\beta}:U_{\alpha\beta}:=U_\alpha\cap U_\beta\to GL(V).$$
+The mapping $\psi_{\alpha\beta}$ is then unique and smooth, and is called the \textit{transition function} between the two bundle charts.
+
+A \textit{vector bundle atlas} $\{(U_\alpha,\psi_\alpha)\}$ for $(E,\pi, M)$ is a set of pairwise compatible bundle charts such that $\{U_\alpha\}$ is an open cover of $M$.  Two vector bundle atlases are \textit{equivalent} if their union is again a vector bundle atlas.
+
+Thus a vector bundle $(E,\pi, M)$ consists of the smooth mapping $\pi:E\to M$ between smooth manifolds with an equivalence class of vector bundle atlases.
+
+\begin{cor}
+    Given a vector bundle $\pi:E\to M$, it follows that $\pi$ is a surjective submersion.
+\end{cor}
+
+A \textit{local section} of a smooth vector bundle $\pi:E\to M$ is a smooth map $\xi:U\to E$ for some open $U\subset M$ such that $\pi\circ\xi=\id_U$.  A \textit{(global) section} is one where $U=M$.  The \textit{zero section} is the section $\iota:M\to E$ defined by
+$$\iota(p)=0_p\in E_p,$$
+for each $p\in M$.  We denote the space of global sections by $\Gamma(E)$, and the space of local sections by $\Gamma(\rest{E}_U)$ (this notation will become more clear once we define the restriction of a bundle).
+
+Given two smooth bundles $(E,\pi,M)$ and $(E',\pi',M')$, a smooth map $F:E\to E'$ is a \textit{bundle homomorphism} if there exists $f:M\to M'$ such that the following diagram commutes:
+\begin{center}
+	\begin{tikzpicture}[auto, node distance=3cm]
+		\node(A){$E$};
+		\node(B)[right of=A]{$E'$};
+		\node(C)[below of=A]{$M$};
+		\node(D)[right of=C]{$M'$};
+		\draw[->](A) to node{$F$}(B);
+		\draw[->](A) to node[swap]{$\pi$}(C);
+		\draw[->](B) to node{$\pi'$}(D);
+		\draw[->](C) to node[swap]{$f$}(D);
+	\end{tikzpicture}
+\end{center}
+and $F$ is a fiber-respecting, fiber-linear map, i.e., $F_p:E_p\to E'_{f(p)}$ is linear.  Note that this implies $f$ is smooth since $f=\pi'\circ F\circ\iota$.  A bijective bundle homomorphism that's inverse is also a bundle homomorphism is called a \textit{bundle isomorphism}.  If $E$ and $E'$ are bundles over the same base space $M$, then we say a \textit{bundle homomorphism over $M$}.
+
+
+
+
+
+%%%%%
+\subsection{Operations on Vector Bundles}
+
+\paragraph{Whitney Sums}
+Suppose $E^1\to M$ and $E^2\to M$ are smooth vector bundles of rank $k_1$ and $k_2$, respectively.  Then for each $p\in M$, we have the vector space direct sum
+$$E_p^1\oplus E_p^2,$$
+and we define the space
+$$E=E^1\oplus E^2:=\coprod_{p\in M}\left(E_p^1\oplus E_p^2\right).$$
+Letting $\pi:E\to M$ denote the obvious projection, we have a new smooth vector bundle $\pi:E\to M$ called the \textit{Whitney sum of $E^1$ and $E^2$}.
+
+
+\paragraph{Subbundles}
+A \textit{vector subbundle} $(F,\pi, M)$ of a vector bundle $(E,\pi,M)$ is a vector bundle and vector bundle homomorphism $\phi:F\to E$ which coves $\id_M$ such that $\phi_p:F_p\to E_p$ is a linear embedding for each $p\in M$.
+
+\begin{lem}
+    Let $\phi:(E,\pi,M)\to(E',\pi',M')$ be a bundle homomorphism such that $\text{rank}(\phi_x)$ is constant in $x\in M$.  Then $\ker{\phi}$, given by $(\ker{\phi})_x=\ker{\phi_x}$ is a vector subbundle of $(E,\pi,M)$.
+\end{lem}
+
+
+
+\paragraph{Bundle Restrictions}
+If $\pi:E\to M$ is a smooth vector bundle, and $A\subset M$ is any immersed submanifold of $M$, then we define the \textit{restriction of $E$ to $A$} to be the set
+$$\rest{E}_A=\bigcup_{a\in A}E_a,$$
+and we have a new smooth vector bundle
+$$\rest{\pi}_A:\rest{E}_A\to A.$$
+
+If $i:A\hookrightarrow M$ is an immersed submanifold, then the inclusion $i_\#:\rest{E}_A\hookrightarrow E$ is a bundle homomorphism covering $i$:
+\begin{center}
+	\begin{tikzpicture}[auto, node distance=3cm]
+		\node(A){$\rest{E}_A$};
+		\node(B)[right of=A]{$E$};
+		\node(C)[below of=A]{$A$};
+		\node(D)[right of=C]{$M$};
+		\draw[->](A) to node{$i_\#$}(B);
+		\draw[->](A) to node[swap]{$\rest{\pi}_A$}(C);
+		\draw[->](B) to node{$\pi$}(D);
+		\draw[->](C) to node[swap]{$i$}(D);
+	\end{tikzpicture}
+\end{center}
+
+To further the understanding of the restriction of a bundle, we introduce the notion of a pullback bundle.  Let $\pi:E\to M$ be a smooth vector bundle, and $f:A\to M$ a smooth map of smooth manifolds.  The \textit{pullback bundle of $E$ along $f$} is the vector bundle $f^*\pi:f^*E\to A$ given by
+$$f^*E=\{(a,(x,v))\in A\times E:f(a)=\pi(x,v)=x\},$$
+and the bundle projection $f^*\pi:f^*E\to A$ is the projection onto the first factor of $A\times E$.  Then we have the vector space isomorphism
+$$f^*E_a\cong E_{f(a)}.$$
+Moreover, the projection onto the second factor, called the \textit{pushforth of $f$,} $f_\#:f^*E\to E$ yields the commutative diagram
+\begin{center}
+	\begin{tikzpicture}[auto, node distance=3cm]
+		\node(A){$f^*E$};
+		\node(B)[right of=A]{$E$};
+		\node(C)[below of=A]{$A$};
+		\node(D)[right of=C]{$M$};
+		\draw[->](A) to node{$f_\#$}(B);
+		\draw[->](A) to node[swap]{$f^*\pi$}(C);
+		\draw[->](B) to node{$\pi$}(D);
+		\draw[->](C) to node[swap]{$f$}(D);
+	\end{tikzpicture}
+\end{center}
+Let $X\in\Gamma(f^*E)$, then the pushforth of $X$ along $f$ is the map 
+$$\tilde{X}=f_\#X:A\to E$$
+and the space of all sections along $f$ is denoted $\Gamma_f(E)=f_\#\Gamma(f^*E).$
+
+
+In the setting of pullbacks, we let $i:A\hookrightarrow M$ be an immersed submanifold.  Then the pullback bundle
+\begin{align*}
+	i^*E&=\{(a,(x,v))\in A\times E:i(a)=\pi(x,v)=x\}\\
+	&=\{(a,(i(a),v))\in A\times E\}\\
+	&\cong\{(i(a),v)\in E:a\in A\}\\
+	&=\rest{E}_A,
+\end{align*}
+and hence leads to the notation of $i_\#:\rest{E}_A\hookrightarrow E$ being the inclusion.
+
+
+\paragraph{Lifts}
+Let $\pi:E\to M$ be a smooth vector bundle and let $\gamma:I\to M$ be curve with $0,1\in I$ and $\gamma(0)=p,$ $\gamma(1)=q$.  Let $c:I\to\gamma^*E$ be a section of the pullback bundle $\gamma^*\pi:\gamma^*E\to I$.  Then the pushforth $\gamma_\#c:I\to E$ is a path in $E$ that satisfies
+$$\pi\circ\gamma_\#c=\gamma.$$
+That is, for the curve $\tilde{\gamma}:=\gamma_\#c$, the following diagram commutes
+\begin{center}
+	\begin{tikzpicture}[auto, node distance=4cm]
+		\node(A){$\gamma^*E$};
+		\node(B)[right of=A]{$E$};
+		\node(C)[below of=A]{$I$};
+		\node(D)[right of=C]{$M$};
+		\draw[->](A) to node{$\gamma_\#$}(B);
+		\draw[->](C) to node{$c$}(A);
+		\draw[->](B) to node{$\pi$}(D);
+		\draw[->](C) to node[swap]{$\gamma$}(D);
+		\draw[->](C) to node{$\tilde{\gamma}$}(B);
+	\end{tikzpicture}
+\end{center}
+The path $\tilde{\gamma}$ is called a \textit{lift of $\gamma$}.  A lift of $\gamma$ is dependent on choice of section $c\in\Gamma(\gamma^*E)$, and hence we denote the space of all lifts along $\gamma$ as $\Gamma_\gamma(E)=\gamma_\#\Gamma(\gamma^*E)$.  Note that if $\gamma$ has a self-intersection, then the lift is not a section of $E$ along $\gamma$ (despite the notational similarities).

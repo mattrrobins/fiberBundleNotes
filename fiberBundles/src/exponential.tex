@@ -1,0 +1,152 @@
+
+
+
+
+%%%%%
+\section{Constructions via Sprays}
+
+Let $\hat{\pi}:E\to M$ be a smooth vector bundle.  Let $\iota:M\to E$ denote the zero section, and consider the pullback $\iota^*(TE,\pi_E,E)$ bundle given by $(\iota^*TE,\iota^*\pi_E,M)$.  We've seen that this is precisely the restriction $\rest{TE}_M$, and we let $\pi:\rest{TE}_M\to M$ denote this vector bundle.
+
+It should be noted that this is not the vertical bundle since we're taking the zero section of $(E,\hat{\pi},M)$ and not $(TM,\pi_M,M)$.  If $E=TM$, then $\rest{TTM}_M$ is the canonical involution of $VTM$.
+
+As a map $\iota:M\to E$ and so $d\iota:TM\to TE$ with $\im{d\iota}\subseteq\rest{TE}_M$.  Since $\iota$ is an embedding, $d\iota$ is a fiberwise injective bundle morphism, and hence $TM\cong\im{d\iota}$ is a subbundle of $\rest{TE}_M$.  Moreover, in local coordinates, we have that
+$$d\iota(x,\xi)=(x,0;\xi,0).$$
+
+Now define the bundle morphism $k:E\to TE$ by
+$$k(v)=\vl(0,v)=\rest{\frac{d}{dt}}_{t=0}(tv),$$
+and hence in local coordinates
+$$k(x,v)=(x,0;0,v).$$
+Thus $\im{k}\subseteq\rest{TE}_M$ and we similarly have that $k$ is an embedding.  Thus $E\cong\im{k}$ is a vector subbundle of $\rest{TE}_M$.
+
+Finally, since $\rest{TE}_M$ consists of points in local coordinates given by $(x,0;\xi,w)$ we conclude that the map $(k,d\iota):E\oplus TM\to\rest{TE}_M$ is a vector bundle isomorphism.
+
+With the above decomposition of the vector bundle $\pi:\rest{TE}_M\to M$, we see from construction that the vertical bundle
+$$V(\rest{TE}_M)=\ker{d\pi}=\im{k}\cong E.$$
+We call the other portion of this decomposition the \textit{horizontal bundle}, that is, as subbundle $H(\rest{TE}_M)\leq\rest{TE}_M$, we have that
+$$H(\rest{TE}_M)=\im{d\iota}\cong TM.$$
+
+Now, when $E=TM$, we let $VM$ and $HM$ denote the the above vertical and horizontal bundles, and have that each $VM\cong TM$ and $HM\cong TM$.  Thus by our above decomposition, we have that
+$$\rest{TTM}_M=VM\oplus HM\cong TM\oplus TM.$$
+
+
+Let $X$ be a spray on $M$ with exponential domain $\mathcal{O}\subseteq TM$.  Since $\mathcal{O}$ is open, we have an identical splitting of
+\begin{align*}
+	\rest{T\mathcal{O}}_M&=k(TM)\oplus d\iota(TM)\\
+	&=TM\oplus TM.
+\end{align*}
+Moreover, from construction $\exp\circ\iota=\id_M$.
+
+\begin{lem}
+    The differential of the exponential map on the zero section,
+    $$d(\exp)_{\iota(x)}:T_{\iota(x)}\mathcal{O}=k(T_xM)\oplus d\iota_x(T_xM)\to T_xM$$ is given by the map
+    $$(v,w)\mapsto v+w.$$
+\end{lem}
+
+\begin{proof}
+Fix $x\in M$, $u,v\in T_xM$, and so $d\iota_x(w)=(0,w)$ and $k(v)=(v,0)$.  Since $\exp\circ i=\id_M$, for $x\in M$, we have that
+\begin{align*}
+	d(\exp)_{\iota(x)}(0,w)&=d(\exp)_{\iota(x)}(d\iota_x(w))\\
+	&=d(\exp\circ\iota)_x(w)\\
+	&=d(\id_M)_x(w)\\
+	&=\id_{T_xM}(w)\\
+	&=w.
+\end{align*}
+
+On the other hand, note that $k(v)=\left(\rest{\frac{d}{dt}}_{t=0}(tv),0\right)=(v,0)$.  Then
+\begin{align*}
+	d(\exp)_{\iota(x)}(v,0)&=d(\exp)_{\iota(x)}\left(\rest{\frac{d}{dt}}_{t=0}(tv)\right)\\
+	&=\rest{\frac{d}{dt}}_{t=0}\exp(tv)\\
+	&=\rest{\frac{d}{dt}}_{t=0}\alpha_{tv}(1)\\
+	&=\rest{\frac{d}{dt}}_{t=0}\alpha_v(t)\\
+	&=\alpha_v'(0)\\
+	&=v.
+\end{align*}
+That is, for $(v,w)=k(v)+d\iota_x(w)$, we have that
+$$d(\exp)_{\iota(x)}(v,w)=v+w,$$
+as desired.
+\end{proof}
+
+\begin{lem}
+    The differential of the map $(\pi,\exp):\mathcal{O}\to M\times M$ on the zero section 
+    $$d(\pi,\exp)_{\iota(x)}:T_{\iota(x)}\mathcal{O}=k(T_xM)\oplus d\iota_x(T_xM)\to T_xM\oplus T_xM$$
+    is given by
+    $$(v,w)\mapsto(w,v+w).$$
+\end{lem}
+
+\begin{proof}
+By the previous lemma, we need only show that $d\pi_{\iota(x)}:T_{\iota(x)}\mathcal{O}=k(T_xM)\oplus d\iota_x(T_xM)\to T_xM$ is given by
+$$(v,w)\mapsto w.$$
+Indeed,
+\begin{align*}
+	d\pi_{\iota(x)}(v,w)&=d\pi_{\iota(x)}(k(v))+d\pi_{\iota(x)}(d\iota_x(w))\\
+	&=d\pi_{\iota(x)}\left(\rest{\frac{d}{dt}}_{t=0}(tv)\right)+d(\pi\circ\iota)_x(w)\\
+	&=\rest{\frac{d}{dt}}_{t=0}(\pi(tv))+d(\id_M)_x(w)\\
+	&=\rest{\frac{d}{dt}}_{t=0}(x)+\id_{T_xM}(w)\\
+	&=0+w\\
+	&=w,
+\end{align*}
+and the result follows.
+\end{proof}
+
+Thus for all $x\in M$, by the inverse function theorem, there exists an open neighborhood $U_x\subseteq\mathcal{O}$ of $\iota(x)$ such that $\rest{(\pi,\exp)}_{U_x}:U_x\to W_x$ is a diffeomorphism, where $W_x$ is an open neighborhood of $(x,x)$ in $M\times M$.
+
+
+
+\subsection{A Metric Space Lemma}
+
+\begin{lem}\label{thm:metricSpaceLem}
+    Let $(Z,d)$ be a metric space, and suppose $X,Y,D$ are all subspaces of $Z$ with $Y\subseteq X$ and $Y\subseteq D$.  Suppose $f:D\to X$ is a continuous function such that $\rest{f}_Y=\id_Y$.  Furthermore, assume that for each $y\in Y$, there exists $\epsilon(y)>0$ such that $\rest{f}_{B_D(y,\epsilon(y))}$ is a homeomorphism onto an open subset of $X$.  Then there exists an open subspace $U\subseteq D$ of $Y$ for which $f$ is injective.
+\end{lem}
+
+\begin{proof}
+For each $y\in Y$, we have that $f(B_D(y,\epsilon(y)/2))$ is open in $X$.  Hence there exists $\epsilon'(y)>0$ such that
+$$B_X(y,\epsilon'(y))\subseteq f(B_D(y,\epsilon(y)/2)),$$
+and $\epsilon'(y)<\frac{\epsilon(y)}{4}.$  Thus for each $y\in Y$, define the open sets
+$$U_y=\left(\rest{f}_{B_D(y,\epsilon(y)/2)}\right)^{-1}(B_X(y,\epsilon'(y)),$$
+and let
+$$U=\bigcup_{y\in Y}U_y.$$
+
+Now $f$ is injective on $U$.  Indeed, assume $f(z_1)=f(z_2)=y_0$ with $z_1\in U_{y_1}, z_2\in U_{y_2}$.  In particular, we have that
+$$y_0=f(z_j)\in f(U_j)\subseteq B_X(y_j,\epsilon'(y_j))\subseteq B_X(y_j,\epsilon(y_j)/4).$$
+Without loss of generality, assume that $\epsilon(y_1)\geq\epsilon(y_2)$.  Hence
+\begin{align*}
+	d(z_2,y_1)&\leq d(z_2,y_2)+d(y_2,y_0)+d(y_0,y_1)\\
+	&\leq \frac{\epsilon(y_2)}{2}+\frac{\epsilon(y_2)}{4}+\frac{\epsilon(y_1)}{4}\\
+	&\leq\frac{\epsilon(y_1)}{2}+\frac{\epsilon(y_1)}{4}+\frac{\epsilon(y_1)}{4}\\
+	&=\epsilon(y_1),
+\end{align*}
+and so both $z_1,z_2\in B_D(y_1,\epsilon(y_1))$, and since $f$ is a homeomorphism here, we conclude $z_1=z_2$.
+\end{proof}
+
+\TOX{
+
+\begin{thm}
+    Suppose $(M,g)$ is a Riemannian manifold and let $\hat{g}$ denote the Sasaki-metric on $TM$.  Let $\xi$ be any spray on $M$ with associated exponential map $\exp$.  Then there exists an open neighborhood $U$ of the zero section $M$ in $TM$ and an open neighborhood $V$ of the diagonal $\Delta(M)$ in $M\times M$ such that $(\pi,\exp):U\to V$ is a diffeomorphism.
+\end{thm}
+
+\begin{proof}
+We need to modify either \cref{thm:metricSpaceLem} to $f$ being just injective on $Y$ and $f(Y)\subseteq X$ for a different metric space $(X,d')$, or compose with a new map to consider the diagonal and the zero section, the same set.
+\end{proof}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

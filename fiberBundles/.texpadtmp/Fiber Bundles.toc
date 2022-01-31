@@ -1,0 +1,11 @@
+\contentsline {section}{\numberline {1}Vector Bundles}{2}{section.1}
+\contentsline {paragraph}{Alternative Definition:}{2}{section*.2}
+\contentsline {subsection}{\numberline {1.1}Operations on Vector Bundles}{4}{subsection.1.1}
+\contentsline {paragraph}{Whitney Sums}{4}{section*.3}
+\contentsline {paragraph}{Subbundles}{4}{section*.4}
+\contentsline {paragraph}{Bundle Restrictions}{5}{section*.5}
+\contentsline {paragraph}{Lifts}{6}{section*.6}
+\contentsline {section}{\numberline {2}Examples of Vector Bundles}{8}{section.2}
+\contentsline {subsection}{\numberline {2.1}The Tangent Bundle}{8}{subsection.2.1}
+\contentsline {section}{\numberline {3}General Fiber Bundles}{10}{section.3}
+\contentsline {subsubsection}{\numberline {3.0.1}Considerations}{11}{subsubsection.3.0.1}

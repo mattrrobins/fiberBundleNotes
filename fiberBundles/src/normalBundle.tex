@@ -1,0 +1,95 @@
+
+
+
+
+%%%%%%
+\section{The Normal Bundle}
+
+\begin{tcolorbox}
+	Following \textit{Differential Manifolds} by Tammo tom Dieck.  See also the ``Flowout Theorem'' in \cite{lee2003smooth}, as I'm fairly certain the Flowout Theorem is another way to characterize the integral curves of sprays.
+	
+	Maybe let $I=\rest{\iota}_A=\iota\circ i$ for clarity?  Idk, fix this at some point though.
+	
+	\cite{borisenko1987sasaki}
+\end{tcolorbox}
+
+
+Let $(M,g)$ be a Riemannian manifold, and let $A\hookrightarrow M$ be a submanifold, then the differential $TA\to\rest{TM}_A$ is an injective bundle morphism, and we can regard $T_aA$ as a subspace of $T_aM$.  Let $N_aA=T_aA^\perp$ in $T_aM$.  Then we have the orthogonal product
+$$T_aM=N_aA\oplus T_aA.$$
+Moreover, as we obtain a subbundle $NA$ of $\rest{TM}_A$, we have the decomposition
+$$\rest{TM}_A=NA\oplus TA.$$
+Let $\xi$ be a spray on $M$, and let $\exp:\mathcal{O}\subseteq TM\to M$ be its exponential map.  Let $\mathcal{D}=\mathcal{O}\cap NA$, then $\mathcal{D}$ is an open neighborhood of the zero section
+$$\rest{i}_A(A)\subset\mathcal{D}\subset NA.$$
+Thus with respect to our decomposition of
+$$T_{i(a)}\mathcal{O}=k(T_aM)\oplus di_a(T_aM),$$
+into horizontal and vertical components, we then have
+\begin{align*}
+	T_{i(a)}(\mathcal{D})&=k(N_aM)\oplus di_a(T_aA)\\
+	&\cong N_aA\oplus T_aA.
+\end{align*}
+Let $\exp^\perp=\rest{\exp}_{\mathcal{D}}:\mathcal{D}\to M$.  Then on the zero section $i(A)$, we have that
+$$d(\exp^\perp)_{i(a)}:(v,w)=v+w,$$
+but $T_aM=N_aA\oplus T_aA$, hence $d(\exp^\perp)_{i(a)}$ is the identity.
+
+Thus for each $a\in A$, there exists a neighborhood $U_a\subseteq\mathcal{D}$ of $i(a)$ such that $\exp^\perp:U_a\to V_a$ is a diffeomorphism, where $V_a\subseteq M$ is a neighborhood of $a$.
+
+\begin{thm}[Tubular Neighborhood Theorem]\label{thm:tublar}
+    Let $(M,g)$ be a Riemannian manifold with Sasaki-metric $\hat{g}$ on $TM$.  Let $\xi$ be any spray on $M$ with associated exponential map $\exp$.  Suppose $A\subset M$ is a submanifold.  Then there exists an open neighborhood $U$ of the zero section $i(A)$ in $NA$, and an open neighborhood $V$ of $A$ in $M$ such that $\rest{\exp^\perp}_U:U\to V$ is a diffeomorphism.
+\end{thm}
+
+\begin{proof}
+Let $\mathcal{D}$ denote the domain of $\exp^\perp$ in the normal bundle $NA$.  Let $d$ denote the induced distance on $TM$ from the Sasaki metric $\hat{g}$, so that $(TM,d)$ is a metric space.  Then $\mathcal{D}$ is a subspace of $TM$ containing the zero section $i(A)$.  Moreover, $i(A)$ is a subspace of $i(M)$ which is a subspace of $TM$.  Finally, we have that $i\circ\exp^\perp:\mathcal{D}\to i(M)$, where
+$$i\circ\exp^\perp(i(a))=i(a),$$
+so the restriction to $i(A)$ is the identity, and for each $a\in A$, there exists a open neighborhood $U_a\subseteq\mathcal{D}$ of $a$ such that $\rest{i\circ\exp^\perp}_{U_a}$ is a diffeomorphism.
+
+Since $TM$ is a metric space, for each $a\in A$, we can find $\epsilon(a)>0$ so that $B_{\mathcal{D}}(i(a),\epsilon(a))\subseteq U_a$.  As this restriction is still a homeomorphism, we may apply \cref{thm:metricSpaceLem} directly to conclude there exists there exists an open neighborhood $U\subseteq\mathcal{D}$ of $i(A)$ for which $\rest{i\circ\exp}_U$ is a diffeomorphism onto its image in $i(M)$.  Since $i$ is diffeomorphism onto it's image, post-compositing with $i^{-1}$, the result follows.
+\end{proof}
+
+When $\xi$ is the geodesic spray, and $\exp$ our Riemannian exponential map, we say the restriction of $\exp$ to the normal bundle, the \textit{normal exponential map}.
+
+\begin{lem}
+    There exists a smooth function $\epsilon:A\to\R$ such that the $\epsilon$-neighborhood,
+    $$U^\epsilon=\{(a,v)\in NA:|v|_g<\epsilon(a)\}$$
+    is contained in $U$.
+\end{lem}
+
+\begin{proof}
+Let $\{W_\beta:\beta\in B\}$ be a collection of locally-finite charts which cover $A$.  Then due to the trivialization of the bundle $NA\to A$, we have that 
+$$i(W_\beta\cap A)=(W_\beta\cap A)\times\{0\}.$$
+Since this is contained in the open set $U$, there exists $\epsilon_\beta>0$ such that
+$$(W_\beta\cap A)\times D(0,\epsilon_\beta)\subseteq U,$$
+where
+$$D(0,\epsilon_\beta)=\{v\in N_{a_0}A: |v|_{g(a_0)}<\epsilon_\beta\},$$
+for some fixed $a_0\in A$, since they're all equivalent.  Let $\{\theta_\beta:\beta\in B\}$ be a partition of unity subordinate to $\{W_\beta:\beta\in B\}$.  Define the function $\epsilon:A\to\R$ by
+$$\epsilon(a)=\sum_{\beta\in B}\epsilon_\beta\theta_\beta(a).$$
+Then $\epsilon$ is smooth and
+$$\epsilon(a)\leq\max\{\epsilon_\beta:a\in W_\beta\},$$
+showing that
+$$\{a\}\times D(0,\epsilon(a))\subset U,$$
+for each $a\in A$.  Then
+$$U^\epsilon=\bigcup_{a\in A}\{v\in N_aA:|v|_g<\epsilon(a)\}\subseteq U,$$
+as desired.
+\end{proof}
+
+
+
+\begin{cor}
+    When $A\subset M$ is compact, there exists $\epsilon>0$ such that the $U$ in the above theorem can be taken to be
+    $$U=\{v\in NA:|v|_g<\epsilon\}.$$
+\end{cor}
+
+\begin{proof}
+Since $A$ is compact, the continuously defined $\epsilon:A\to\R$ in the above proof attains a positive minimum value, and taking the constant $\epsilon$ to be this value gives the desired result.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+

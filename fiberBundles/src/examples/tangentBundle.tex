@@ -1,0 +1,41 @@
+
+
+
+
+%%%%%
+\subsection{The Tangent Bundle}
+
+\TOX{
+See \cite{lee2003smooth} 
+}
+
+Let $M$ be a smooth $n$-dimensional manifold.  Let
+$$TM=\coprod_{p\in M}T_pM,$$
+denote the ``\textit{tangent bundle}''.  Let $\pi:TM\to M$, $\pi(p,v)=p$.  Then $TM$ has a natural topology and smooth structure that makes $TM$ into a smooth $2n$-dimensional manifold, and with respect to this structure, the map $\pi:TM\to M$ is smooth.
+
+Let $(\phi,U)$ be a chart on $M$ with coordinates $(x^j)$.  Define the map $\tilde{\phi}:\pi^{-1}(U)\to\R^{2n}$ by
+$$\tilde{\phi}\left(v^j\rest{\pfrac{}{x^j}}_p\right)=(x^1(p),...,x^n(p),v^1,...,v^n).$$
+Its image set is $\phi(U)\times\R^n$ and is a bijection, since it's inverse can explicitly be written as
+$$\tilde{\phi}^{-1}(x^1,,,,x^n,v^1,...,v^n)=v^j\rest{\pfrac{}{x^j}}_{\phi^{-1}(x)}.$$
+
+Suppose we are given two charts $(\phi,U)$ and $(\psi,V)$ on $M$ with corresponding $(\tilde{\phi},\pi^{-1}(U))$ and $(\tilde{\psi},\pi^{-1}(V))$ on $TM$.  Then the sets
+$$\tilde{\phi}(\pi^{-1}(U)\cap\pi^{-1}(V))=\phi(U\cap V)\times\R^n$$
+and
+$$\tilde{\psi}(\pi^{-1}(U)\cap\pi^{-1}(V))=\psi(U\cap V)\times\R^n$$
+are open in $\R^{2n}$.  The transition map
+$$\tilde{\psi}\circ\tilde{\phi}^{-1}:\phi(U\cap V)\times\R^n\to\psi(U\cap V)\times\R^n,$$
+can then be explicitly written as
+$$\tilde{\psi}\circ\tilde{\phi}^{-1}(x^1,...,x^n,v^1,...,v^n)=\left(\tilde{x}^1(x),...,\tilde{x}^n(x),v^j\pfrac{\tilde{x}^1}{x^j}(x),...,v^j\pfrac{\tilde{x}^n}{x^j}(x)\right),$$
+which is clearly smooth.
+
+Let $\{U_j\}$ be a countable cover of charts for $M$, the $\{\pi^{-1}(U_j)\}$ is a countable cover of charts for $TM$, and hence $TM$ is a smooth $2n$-dimensional manifold.
+
+To show that $\pi:TM\to M$ is smooth, fix some local coordinates and observe that $\pi(x,v)=x$ which is clearly smooth.  Moreover, we have that $\pi:TM\to M$ is a submersion.  Since $\pi$ is a submersion if and only if every point in $TM$ is the image of a smooth local section, we fix $(p,v)\in TM$ and chart about $p$, and define the section $X:U\to TU$ by $X(q)=(q,\rest{v^j\pfrac{}{x^j}}_q)$.
+
+We now show that $\pi:TM\to M$ is smooth vector bundle of rank $n$.  Clearly each $T_pM$ is an $n$-dimensional vector space by construction.  Fix a coordinate chart $(\phi, U)$ on $M$ and corresponding $(\tilde{\phi},\pi^{-1}(U))$ on $TM$.  Define the map $\Phi:\pi^{-1}(U)\to U\times\R^n$ by
+$$\Phi\left(v^j\rest{\pfrac{}{x^j}}_p\right)=(p,(v^1,...,v^n)).$$
+Then $\pi_U\circ\Phi=\pi$ and is clearly linear on each $T_pM$.  Moreover, since
+$$\phi\times\id_{\R^n}\circ\Phi:\pi^{-1}(U)\to\phi(U)\times\R^n,$$
+is our usual chart map $\tilde{\phi}$ on $TM$, it's a diffeomorphism, and hence $\Phi=(\phi^{-1}\times\id_{\R^n})\circ\tilde{\phi}$ is a diffeomorphism as well, and hence $\{(\pi^{-1}(U),\Phi)\}$ is our desired vector bundle atlas.
+
+

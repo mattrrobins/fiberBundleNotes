@@ -1,0 +1,80 @@
+
+
+
+
+%%%%%
+\section{General Fiber Bundles}
+
+\TOX{
+This section will mostly follow \cite{kolar1999natural}, \cite{michor2008topics}, and \cite{ryan2014geometry}.
+}
+
+A \textit{fiber bundle} is a quadruple $(E,\pi, M, S)$ which consists of smooth manifolds $E$, $M$, and and $S$, and a smooth surjective submersion $\pi:E\to M$ with the requirement that for each $p\in M$, there exists an open neighborhood $U\subseteq M$ of $p$ such that $\rest{E}_U:=\pi^{-1}(U)$ is diffeomorphic to $U\times S$ via a fiber respecting diagram
+\begin{center}
+	\begin{tikzpicture}[auto, node distance=3cm]
+		\node(A){$\rest{E}_U$};
+		\node(B)[right of=A]{};
+		\node(C)[right of=B]{$U\times S$};
+		\node(D)[below of=B]{$U$};
+		\draw[->](A) to node{$\phi$}(C);
+		\draw[->](A) to node[swap]{$\pi$}(D);
+		\draw[->](C) to node{$\pi_1$}(D);
+	\end{tikzpicture}
+\end{center}
+
+We say $E$ is the \textit{total space}, $M$ is the \textit{base manifold}, $S$ is the \textit{model fiber}, and $\pi$ is the \textit{bundle projection}.  In practice, the fiber is usual understand from context, and so we typically denote a fiber a bundle as the mapping $\pi:E\to M$, or as s script lettering of the total space, e.g., $(E,\pi,M,S)=\mathcal{E}$.  Moreover, $(U,\phi)$ as above is called a \textit{fiber chart} or a \textit{local trivialization of $E$}.
+
+A collection of fiber charts $\{(U_\alpha,\phi_\alpha)\}$ such that $\{U_\alpha\}$ is an open cover of $M$ is called \textit{(fiber) bundle atlas}.  If we fix such an atlas, then
+$$\phi_\alpha\circ\phi_\beta^{-1}(x,p)=(x,\phi_{\alpha\beta}(p)),$$
+where
+$$\phi_{\alpha\beta}:U_{\alpha\beta}\times S\to S$$
+is smooth and $U_{\alpha\beta}=U_\alpha\cap U_\beta$, moreover, for each $x\in U_{\alpha\beta}$, we have that $p\mapsto\phi_{\alpha\beta}(x,p)$ is a diffeomorphism of $S$. It is sometimes useful to then consider $\phi_{\alpha\beta}:U_{\alpha\beta}\to\text{Diff}(S)$, but its differentiability is a very subtle question.\footnote{See \cite{michor1988gauge} for treatment of the subtlety.}  In either form, the functions $\{\phi_{\alpha\beta}\}$ are called the \textit{transition functions} and satisfy the \textit{cocycle condition}:
+$$\phi_{\alpha\beta}\circ\phi_{\beta\gamma}(x)=\phi_{\alpha\gamma}(x),\qquad x\in U_{\alpha\beta\gamma},$$
+and
+$$\phi_{\alpha\alpha}(x)=\id_F.$$
+
+Given an open cover $\{U_\alpha\}$ of $M$ and a cocycle of transition functions $\{\phi_{\alpha\beta}\}$, we may construct a fiber bundle $\mathcal{E}$.
+
+\begin{lem}
+    Let $\pi:E\to M$ be a surjective submersion.  If $\pi$ is proper and $M$ is connected, then $\pi:E\to M$ is a fiber bundle.
+\end{lem}
+
+Given a fiber bundle $(E,\pi,M,S)$, we consider the differential $d\pi:TE\to TM$, and define the \textit{vertical bundle}
+$$VE:=\ker{d\pi}.$$
+
+A \textit{connection} on a fiber bundle $(E,\pi,M,S)$ is a vector-valued $1$-form $\Phi\in\Omega^1(E;VE)$ such that $\Phi\circ\Phi=\Phi$ and $\im{\Phi}=VE$.  Note that such a $\Phi\in\Omega^1(E;VE)$ is a $C^\infty$-linear map $\Phi:TE\to VE$, and since $VE\subseteq TE$ the composition makes sense.
+
+
+\subsubsection{Considerations}
+
+Recall, a topological fiber bundle is quadruple $(E,\pi,M,F)$, where $E,M,F$ are topological spaces, and $\pi:E\to M$ is a continuous surjection; along with an equivalence class of bundle atlases $\{(U_\alpha,\phi_\alpha)\}$, where $U_\alpha$ is an open cover of $M$, and $\phi_\alpha$ satisfies the trivialization criteria.
+
+Let $G$ be a topological group, i.e., $G$ is a group with a topology so that the multiplication and inversion operations are continuous.  Let $F$ be a topological space, then we say that $G$ acts on $F$ if
+$$(g_1(g_2v))=(g_1g_2)v,$$
+for all $g_1,g_2\in G$ and $v\in F$.  We say that $G$ acts faithfully if for every $g\in G\setminus\{e\}$, there exists $v\in F$ such that $gv\neq v$.  We say $G$ acts freely if $gv=v$ implies $g=e$.  Note that freely acting groups (on any nonempty set) are faithful.
+
+Let $G$ act freely on $F$.  Then $G$ is (group) isomorphic to a subgroup of $\text{Homeo}(F)$.
+
+Given a bundle $(E,\pi,M,F)$, a $G$-atlas $\{U_\alpha,\phi_\alpha\}$ is a bundle atlas for $\mathcal{E}$ such that our transitions maps for a trivialization
+$$\phi_\alpha\circ\phi_\beta^{-1}:U_{\alpha\beta}\times F\to U_{\alpha\beta}\times F,\qquad \phi_\alpha\circ\phi_\beta^{-1}(x,v)=(x\phi_{\alpha\beta}(x)v)$$
+are such that $\phi_{\alpha\beta}:U_{\alpha\beta}\to G$ is continuous.  A $G$-bundle is a fiber bundle $\mathcal{E}$ with an equivalence class of $G$-atlases.  The group $G$ is called the structure group of the bundle $\mathcal{E}$.
+
+The transition functions satisfy the following:
+\begin{enumerate}[i.]
+\item $\phi_{\alpha\alpha}(x)=e$,
+\item $\phi_{\beta\alpha}(x)=\phi_{\alpha\beta}(x)^{-1}$,
+\item $\phi_{\alpha\beta}(x)\phi_{\beta\gamma}(x)=\phi_{\alpha\gamma}(x)$,
+\end{enumerate}
+where property (iii.) is called the cocycle condition.  The cocycle condition allows the transition functions to determine the fiber bundle $F$.
+
+A principle $G$-bundle is a $G$-bundle where $G$ acts on $F$ freely and transitively, and hence we may identify $G$ with $F$.
+
+
+
+
+
+
+
+
+
+

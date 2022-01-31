@@ -1,0 +1,183 @@
+
+
+
+\section{Basics of Vector Bundles}
+
+\begin{tcolorbox}
+Introductory definitions follow from \cite{kolar1999natural}, \cite{lee2003smooth}, \cite{ryan2014geometry}.
+
+Check out \cite{borisenko1991riemannian} and \cite{borisenko1987sasaki}
+\end{tcolorbox}
+
+
+
+
+
+
+
+
+\subsubsection{Ehresmann Connections}
+
+\begin{tcolorbox}
+See \cite{ryan2014geometry}.	
+\end{tcolorbox}
+
+
+
+Let's now generalize this notion beyond the zero section.  To this end, let $\pi:E\to M$ be a smooth vector bundles, and $\pi_E:TE\to E$, $\pi_M:TM\to M$ denote the two tangent bundles, and the usual differential $d\pi:TE\to TM$ which commutes via
+\begin{center}
+	\begin{tikzpicture}[auto, node distance=3cm]
+		\node(A){$TE$};
+		\node(B)[right of=A]{$TM$};
+		\node(C)[below of=A]{$E$};
+		\node(D)[right of=C]{$M$};
+		\draw[->](A) to node{$d\pi$}(B);
+		\draw[->](A) to node[swap]{$\pi_E$}(C);
+		\draw[->](B) to node{$\pi_M$}(D);
+		\draw[->](C) to node[swap]{$\pi$}(D);
+	\end{tikzpicture}
+\end{center}
+
+We define the vertical bundle to be $V=\ker{d\pi}$.  That is, for each $\theta=(x,u)\in E$, we have
+$$V_\theta=\ker{d\pi_\theta}.$$
+Let $\pi_V:V\to E$ denote this smooth vector bundle.  Since each $V_\theta$ is isomorphic to $E_x$, we get by considering the composition of bundles $\pi\circ\pi_V$ that
+$$V\cong E\oplus E.$$
+Consider now the pullback bundle $\pi^*E$, that is,
+\begin{align*}
+	\pi^*E&=\{(\theta,\eta)\in E\times E:\pi(\theta)=\pi(\eta\}\\
+	&=\{((x,u),(x,v):u,v\in E_x\}\\
+	&=E\oplus E.
+\end{align*}
+This allows us to define the fiber-isomorphism $j:\pi^*E\to V$ via
+$$j((x,u),(x,v))\mapsto\rest{\frac{d}{dt}}_{t=0}(u+tv),$$
+and hence the fiber-isomorphism $k:V\to E$ via
+$$k(J(x,u),(x,v))=(x,v).$$
+
+The horizontal bundle $H$ is the subbundle of $TE$ that is complementary to $V$, that is,
+$$TE=H\oplus V,$$
+and hence
+$$T_\theta E=H_\theta\oplus V_\theta.$$
+A horizontal bundle can be completely characterized by a \textit{connection form} $\omega:TE\to TE$, as a bundle endomorphism (a $(0,2)$-tensor on $E$) and satisfies
+\begin{enumerate}[i.]
+	\item $\omega^2=\omega,$ and
+	\item $\im(\omega)=V$.	
+\end{enumerate}
+Then the horizontal bundle is given by
+$$H=\ker{\omega},$$
+and this connection form $\omega$ can be thought as the projection onto the vertical space.
+
+To describe such a connection form, we need the notion of a horizontal lift.  To this end, let $\gamma:I\to M$ denote a path, and we say its lift $\tilde{\gamma}:I\to E$ is a \textit{horizontal lift} if $\tilde{\gamma}'(t)\in H_{\tilde{\gamma}(t)}$ for all $t\in I$.  A path $\gamma:I\to M$, $\gamma(0)=x$, $\gamma(1)=y$ \textit{has horizontal lifts} if for every $v\in E_x$, there is a unique horizontal lift $\tilde{\gamma}:I\to E$ such that $\tilde{\gamma}(0)=v$ and $\tilde{\gamma}(1)\in E_y$.  By rescaling, this definition is equivalent to $\tilde{\gamma}(t)\in E_{\gamma(t)}$ for all $t\in I$.
+
+
+If every path $\gamma:I\to M$ has a horizontal lift, we say the horizontal bundle $H$ has the \textit{horizontal lifting property} and we call $H$ an \textit{Ehresmann connection on $E$}.  We use the term connection here because horizontal lifts can be used to connect the fibers of $E$.  Indeed, let $L_\gamma(v)$ denote the image of the horizontal lift of $\gamma$ with initial points $(x,v)$.  Then we may consider $L_\gamma(v)$ as the image of a section in $\Gamma(\gamma^*E)$ (noting the difference if $\gamma$ has self-intersection points), and hence the unique horizontal lift is given by
+$$\tilde{\gamma}=\gamma_\#L_\gamma(v):I\to E.$$
+Hence we have the diffeomorphism (with slight abuse of notation)
+$$L_\gamma:E_x\to E_y,\qquad v\mapsto (L_\gamma(v))(1).$$
+
+
+
+
+
+\subsubsection{Tangent Bundle - Revisited}
+
+\begin{tcolorbox}
+This follows from \cite{paternain2012geodesic}, \cite{ryan2014geometry}, \cite{sakai1996riemannian}.
+\end{tcolorbox}
+
+
+Suppose now that $(M,g)$ is a Riemannian manifold, and we have the tangent bundle $\pi:TM\to M$, and our double tangent bundle $d\pi:TTM\to TM$.  Our vertical space $V$ is defined as usual
+$$V_\theta=\ker{d\pi_\theta},\qquad \theta\in TM.$$
+Since $(M,g)$ is Riemannian, let $\nabla$ denote the Levi-Civita connection, and for a smooth curve, let $P^\gamma_t:T_{\gamma(0)}M\to T_{\gamma(t)}M$ denote the linear isomorphism of parallel translation along $\gamma$.  For $\theta=(x,v)\in TM$, define the \textit{horizontal lift} $L_\theta:T_xM\to T_\theta TM$ as follows:  Let $X\in T_xM$, let $\gamma:I_\epsilon\to M$ be any curve with $\gamma(0)=x$, $\gamma'(0)=X$, and consider the parallel translation $P_t^\gamma(v)$.  Then we have a curve $\alpha:I_\epsilon\to TM$ given by
+$$\alpha(t)=(\gamma(t),P_t^\gamma(v)).$$
+With a slight abuse of notation, we can consider $t\mapsto P_t^\gamma(v)$ a section of $I\to\gamma^*TM$, and thus define
+$$L_\theta(\gamma'(0))=\rest{\frac{d}{dt}}_{t=0}P_t^\gamma(v).$$
+Note that $L_\theta$ is well-defined (i.e., independent of choice of $\gamma$).  Indeed, in coordinates, let
+$$X=X^i\pfrac{}{x^i},\qquad \alpha(t)=\xi^i(t)\rest{\pfrac{}{x^i}}_{\gamma(t)}.$$
+Since $\alpha$ is parallel along $\gamma$, we have that
+$$\nabla_{\gamma'(t)}\alpha(t)=0.$$
+In particular,
+\begin{align*}
+0&=\rest{(\nabla_{\gamma'(t)}\alpha(t))^k}_{t=0}\\
+&=\rest{\left(\nabla_{\gamma'(t)}\left(\xi^j(t)\rest{\pfrac{}{x^j}}_{\gamma(t)}\right)\right)^k}_{t=0}\\
+&=\rest{\nabla_{\gamma'(t)}\xi^k}_{t=0}+\rest{\left(\xi^j(0)\nabla_{\gamma'(t)}\rest{\pfrac{}{x^j}}_{\gamma(t)}\right)^k}_{t=0}\\
+&=\dot{\xi}^k(0)+\xi^j(0)\dot{\gamma}^i(0)\Gamma_{ij}^k\\
+&=\dot{\xi}^k(0)+\xi^j(0)X^i\Gamma_{ij}^k,
+\end{align*}
+and so
+$$\dot{\xi}^k(0)=-\xi^j(0)X^i\Gamma_{ij}^k.$$
+Letting $v^i=\xi^i(0)$, we get that
+\begin{align*}
+\alpha'(0)&=(x^k, v^k, X^k, \cdot{\xi}^k(0))\\
+&=(x^k, v^k, X^k, -v^iX^j\Gamma_{ij}^k).
+\end{align*}
+That is,
+$$L_{(x,v)}(X)=(x^k,v^k,X^k,-v^iX^j\Gamma_{ij}^k),$$
+independent of choice of curve.
+
+Now for $\theta\in TM$, we can define the horizontal subspace
+$$H(\theta)=L_\theta(T_xM).$$
+
+Since
+$$d\pi(x^i,v^i,X^i,\eta^i)=(x^i, X^i),$$
+we clearly have that
+$$d\pi_\theta\circ L_\theta=\id_{TpM},$$
+and hence $V(\theta)\cap H(\theta)=\{0\}$.  Since both are $n$-dimensional, we have the decomposition
+$$T_\theta TM=H(\theta)\oplus V(\theta).$$
+
+Thus in coordinates, if $(x^i,v^i,X^i,\eta^i)\in T_\theta TM$, we get the decomposition
+$$(x^i,v^i,X^i,\eta^i)=(x^i, v^i, X^i, -v^jX^k\Gamma_{jk}^i)+(x^i, v^i,0, \eta^i+v^jX^k\Gamma_{jk}^i).$$
+
+Now, define the connection map $K:TTM\to TM$ as follows:  For $\theta=(x,v)\in TM$ and $\eta=(X,\eta)\in T_\theta TM$, identify $I_\theta:T_\theta T_xM \congto T_xM,$ $ I_\theta(x^i,v^i,0,\eta^i)=(x^i,\eta^i)$ and define
+$$K_\theta(\eta)=I_\theta(\eta_v)=(x^i,\eta^i+v^jX^k\Gamma_{jk}^i),$$
+where $\eta=\eta_h+\eta_v$ in the dirct sum.  
+
+Note that
+\begin{align*}
+K_\theta\circ L_\theta(X)&=K_\theta(x^i, v^i, X^i, -v^jX^k\Gamma_{jk}^i)\\
+&=I_\theta(x^i,v^i,0,0)\\
+&=0.
+\end{align*}
+
+An equivalent definition to $K:TTM\to TM$ is as follows:  Fix $\theta\in TM$ and $\xi\in T_\theta TM$.  Let $\alpha:I_\epsilon\to TM$ be a curve with $\alpha(0)=\theta$ and $\alpha'(0)=\xi$.  Then $\alpha(t)=(\gamma(t),Z(t))$.  Then define
+$$K_\theta(\xi)=\rest{(\nabla_{\gamma'(t)}Z(t))}_{t=0}.$$
+
+We know define the \textit{Sasaki metric} $\hat{g}$ on $TM$.  For $\theta\in TM$ and $\xi,\eta\in T_\theta TM$, define
+$$\hat{g}_\theta(\xi,\eta)=g_{\pi(\theta)}(d\pi_\theta(\xi),d\pi_\theta(\eta))+g_{\pi(\theta)}(K_\theta(\xi),K_\theta(\eta)).$$
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Principle Bundles}
+
+\TOX{
+See \cite{bishop2011geometry} Chapter 3 and 5. And \cite{kobayashi1996foundations}.
+}
+
+
+
+
+
+
+
+
+

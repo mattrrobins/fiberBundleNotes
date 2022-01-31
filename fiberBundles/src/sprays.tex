@@ -1,0 +1,161 @@
+
+
+
+
+%%%%%
+\section{Sprays}
+
+Let $M$ be a smooth manifold with tangent bundle $(TM,\pi,M)$.  Let $X:TM\to TTM$ be a smooth vector field.  We say that $X$ is a \textit{differential equation of second order} or a \textit{vector field of second order} if
+$$d\pi\circ\xi=\id_{TM}.$$
+That is, in particular, $\xi$ is a section of $(TTM,\pi_{TM},TM)$ and of $(TTM,d\pi,TM)$.  
+
+A differential equation of second order $X$ is called a \textit{spray of $M$} if 
+$$X(sv)=ds(s(X(v)))$$
+for all $s\in\R, v\in TM$, where $s:TM\to TM$, $s(x,v)=(x,sv)$, and similarly, $s:TTM\to TTM$, $s(v,\theta)=(sv,s\theta)$.
+
+Let $(U,x)$ be local coordinates on $M$ which trivialize $TM$ and $TTM$.  Then under the usual identifications, we have that
+$$TU=U\times\R^n,\qquad TTU=(U\times\R^n)\times (\R^n\times\R^n).$$
+In these local coordinates, a vector field $X:TU\to TTU$ is given by
+$$X(x,v)=(x,v;f(x,v),g(x,v)).$$
+Now $X$ is a vector field of second order if and only if $f(x,v)=v$.
+
+\begin{lem}
+    $X(x,v)=(x,v;v,g(x,v))$ is a spray if and only if $g(x,sv)=s^2g(x,v)$ for all $s\in\R$ and $(x,v)\in U$.
+\end{lem}
+
+\begin{proof}
+Noting that as a map $s:TU\to TU$, $s(x,v)=(x,sv)$, we have that $ds:TTU\to TTU$ given by
+$$ds(x,v;u,w)=(x,v;u,sw).$$
+Hence
+\begin{align*}
+	ds(s(X(x,v)))&=ds(s(x,v;v,g(x,v)))\\
+	&=ds(x,sv;sv,sg(x,v))\\
+	&=(x,sv;sv,s^2g(x,v))
+\end{align*}
+and since
+$$X(x,sv)=(x,sv;sv,g(x,sv)),$$
+the result then follows.
+\end{proof}
+
+Note that that the above Lemma is trivially satisfied if $g=0$.  Thus sprays exist local, and hence via a partition of unity sprays exist globally.
+
+
+\begin{prop}
+    Let $X\in\vf{TM}$.  Then $X$ is a vector field of second order if and only if each maximal integral curve $\beta_v:(a_v,b_v)\to TM$ with initial point $v\in TM$ and projection $\alpha_v:=\pi\circ\beta_v$ satisfies $\alpha_v'=\beta_v$.
+\end{prop}
+
+\begin{proof}
+Fix $v\in TM$ and let $\beta_v$ be a maximal integral curve for $X$, and in particular, $X(v)=\beta_v'(0)=\beta_{v,*}(\rest{\frac{d}{dt}}_{t=0})$ and suppose $\alpha_v'=\beta_v$.  Then
+\begin{align*}
+	d\pi\circ X(v)&=d\pi\circ\beta_{v,*}\left(\rest{\frac{d}{dt}}_{t=0}\right)\\
+	&=d(\pi\circ\beta_v)\left(\rest{\frac{d}{dt}}_{t=0}\right)\\
+	&=d(\alpha_v)\left(\rest{\frac{d}{dt}}_{t=0}\right)\\
+	&=\alpha_v'(0)\\
+	&=\beta_v(0)\\
+	&=v,
+\end{align*}
+and thus $X$ is of second order.
+
+Conversely, suppose $X$ is of second order, and let $\beta_v$ be a maximal integral curve of $X$.  Then
+\begin{align*}
+	\alpha_v'(t)&=(\pi\circ\beta_v)'(t)\\
+	&=d\pi\circ\beta_v'(t)\\
+	&=d\pi\circ X(\beta_v(t))\\
+	&=\beta_v(t),
+\end{align*}
+as desired.
+\end{proof}
+
+\begin{prop}
+    Let $X$ be a vector field of second order.  Then $X$ is a spray if and only if its integral curves (with the previous proposition's notation) satisfies the following two properties:
+    \begin{enumerate}[i.]
+    \item For $s,t\in\R$ and $v\in TM$, then $st\in(a_v,b_v)$ if and only if $t\in(a_{sv},b_{sv})$.
+    \item For $s,t\in\R$ and $v\in TM$ with $st\in(a_v,b_v)$, then $\alpha_v(st)=\alpha_{sv}(t)$.
+    \end{enumerate}
+\end{prop}
+
+\begin{proof}
+Suppose all of the integral curves of $X$ have the desired properties, and let $\beta_v$ be one such curve.  Recall that for $\alpha_v=\pi\circ\beta_v$, since $X$ is of second order, $\alpha_v'=\beta_v$.  Since $\alpha_v(st)=\alpha_{sv}(t)$ for $st\in(a_v,b_v)$, differentiating with respect to $t$, we obtain
+$$s(\alpha_v'(st))=\alpha_{sv}'(t),$$
+or rather
+$$s(\beta_v(st))=\beta_{sv}(t).$$
+Differentiating once more and using the chain rule for $s:TM\to TM$, we then obtain
+$$\beta_{sv}'(t)=ds(s(\beta_v'(st))),$$
+and hence at $t=0$,
+$$X(sv)=\beta_{sv}'(0)=ds(s(\beta_v'(0)))=ds(s(X(v))),$$
+thus showing that $X$ is a spray.
+
+Conversely, let $\beta_v:(a_v,b_b)\to TM$ be a maximal integral curve of $X$.  Fix $s\in\R$ and define the curve $t\mapsto\gamma_v(t)$, where $\gamma_v(t)=s\beta_v(st)$ and $t$ is such that $st\in(a_v,b_v)$.  Then
+\begin{align*}
+	\gamma_v'(t)&=ds(s(\beta_v'(st)))\\
+	&=ds(s(X(\beta_v(st))))\\
+	&=X(s\beta_v(st))\\
+	&=X(\gamma_v(t)).
+\end{align*}
+Thus $\gamma_v$ is an integral curve of $X$ with initial condition $\gamma_v(0)=sv$.  By the uniqueness of integral curves, we conclude that $\gamma_v(t)=\beta_{sv}(t)$ and that $t\in(a_{sv},b_{sv})$.  When $s\neq0$, we obtain the reverse inclusion replacing $s$ by $\frac{1}{s}$.  Moreover, if $s=0$ and $t\in(a_0,b_0)$, then we trivially have that $0\in(a_v,b_v)$ for any $v\in TM$.
+
+Finally, for any such $s,t$ we have that
+$$\beta_{sv}(t)=s\beta_v(st),$$
+and taking the projection, we see that
+$$\alpha_{sv}(t)=\pi\circ\beta_{sv}(T)=\pi(s(\beta_v)(st)))=\alpha_v(st).$$  
+\end{proof}
+
+
+
+\subsection{The Exponential Map}
+
+Let $X$ be a spray on $M$.  Then define the \textit{domain of the exponential map} to be the set 
+$$\mathcal{O}^X:=\{v\in TM:1\in (a_v,b_v)\}.$$
+We then define the \textit{exponential map with respect to the spray $X$} to be the map $\exp:\mathcal{O}^X\to M$ given by
+$$\exp(v)=\alpha_v(1),$$
+where $\alpha_v:=\pi\circ\beta_v$ and $\beta_v:(a_v,b_v)\to TM$ is the maximal integral curve for $X$ with initial condition $v\in TM$.  For each $p\in M$, we also define the \textit{restricted exponential map} to be $\exp_p:\mathcal{O}_p^X\to M$ given by $\exp_p=\rest{\exp}_{\mathcal{O}_p^X}$, where $\mathcal{O}_p^X=\mathcal{O}^X\cap T_pM$.  When the spray $X$ is understand, the dependence is typically suppressed in the notation.
+
+Recall that subset $S$ of a vector space $V$ is \textit{star-shaped with respect to $x\in V$} if for all $y\in S$, the line segment from $x$ to $y$ is contained in $S$, i.e., the curve $\psi(t):=ty+(1-t)x$ satisfies $\psi(t)\in S$ for all $t\in[0,1]$.
+
+\begin{prop}[Properties of the Exponential Map]
+    Let $M$ be a smooth manifold and let $X$ be a spray on $M$.  
+    \begin{enumerate}[a.]
+    	\item $\mathcal{O}$ is an open neighborhood of $TM$ containing the zero section $\iota(M)$, and each $\mathcal{O}_p$ is a star-shaped region with respect to $0$ in $T_pM$.
+    	\item For each $v\in\mathcal{O}$,
+    		$$\alpha_v(t)=\exp(tv)$$
+    		for all $t\in(a_v,b_v)$.
+    	\item $\exp:\mathcal{O}\to M$ is smooth.
+    	\item For each $p\in M$, the differential $d(\exp_p)_0:T_0T_pM\to T_pM$ is the identity map on $T_pM$ under the usual identification.	
+    \end{enumerate}
+\end{prop}
+
+\begin{proof}
+By our rescaling properties for sprays, (b.) is immediately shown.  Moreover, since for any $v\in\mathcal{O}_p$, we have that $[0,1]\subset(a_v,b_b)$, we conclude that $[0,1]v\subset\mathcal{O}_p$ and that $\mathcal{O}_p$ is a star-shaped region with respect to $0$ in $T_pM$ for each $p\in M$.
+
+To show that $\mathcal{O}$ is open, recall that by the Fundamental Theorem on Flows of Vector Fields, there exists an open set $\mathcal{D}\subseteq\R\times TM$ and smooth map $\theta:\mathcal{D}\to TM$ such that $(0,v)\in\mathcal{D}$ for all $v\in TM$ and $\theta(t,v)=\beta_v(t)$.
+
+Let $v\in\mathcal{O}$, then since $(1,v)\in\mathcal{D}$ by definition, there exists an open neighborhood of $(1,v)$ in $\R\times TM$ such that $\theta$ is defined.  Therefore, there exists a neighborhood about $v\in TM$ for which $\beta_v(t)$ exists for all $t\in[0,1]$.  Thus $\mathcal{O}$ is open in $TM$.  Moreover, since $\exp=\rest{\pi\circ\theta(1,\cdot)}_{\mathcal{O}}$, we conclude that $\exp$ is smooth on $\mathcal{O}$.
+
+Finally, let $v\in T_pM$, so we have by the corresponding isomorphism
+$$k(v)=\rest{\frac{d}{dt}}_{t=0}(tv)\in T_0(T_pM).$$
+Then
+\begin{align*}
+	d(\exp_p)_0(k(v))&=\rest{\frac{d}{dt}}_{t=0}(\exp_p(tv))\\
+	&=\rest{\frac{d}{dt}}_{t=0}(\alpha_v(t))\\
+	&=\alpha_v'(0)\\
+	&=\beta_v(0)\\
+	&=v,
+\end{align*}
+thus completing the proof.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
